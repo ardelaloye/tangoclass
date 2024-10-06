@@ -1,0 +1,4 @@
+DELETE FROM Alumno WHERE id_alumno = 2; 
+DELETE FROM Taller WHERE id_taller = 2;
+
+

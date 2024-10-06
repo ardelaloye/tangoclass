@@ -1,0 +1,42 @@
+INSERT INTO Alumno (nombre, apellido, dni, fecha_nacimiento, direccion, telefono, email, estado_alumno)
+VALUES ('Juan', 'Pérez', 12345678, '1990-05-15', 'Av. Corrientes 1234', '01123456789', 'juan.perez@sucorreo.com', 'A');
+INSERT INTO Alumno (nombre, apellido, dni, fecha_nacimiento, direccion, telefono, email, estado_alumno)
+VALUES ('Ana', 'Gómez', 87654321, '1992-08-20', 'Av. Libertador 5678', '01198765432', 'ana.gomez@sucorreo.com', 'A');
+
+INSERT INTO Docente (nombre, apellido, dni, telefono, email, estado_docente)
+VALUES ('Carlos', 'Sánchez', 12345679, '01123456780', 'carlos.sanchez@sucorreo.com', 'A');
+INSERT INTO Docente (nombre, apellido, dni, telefono, email, estado_docente)
+VALUES ('María', 'López', 87654320, '01198765431', 'maria.lopez@sucorreo.com', 'A');
+
+INSERT INTO Taller (nombre, fecha_inicio, fecha_fin, cupo_maximo, id_docente)
+VALUES ('Taller de Tango Inicial', '2024-09-01', '2024-11-30', 20, 1);
+INSERT INTO Taller (nombre, fecha_inicio, fecha_fin, cupo_maximo, id_docente)
+VALUES ('Taller de Tango Avanzado', '2024-09-01', '2024-11-30', 15, 2);
+
+INSERT INTO Inscripcion (id_alumno, id_taller, fecha_inscripcion, monto_inscripcion, estado_inscripcion)
+VALUES (1, 1, '2024-08-25', 500.00, 'A');
+INSERT INTO Inscripcion (id_alumno, id_taller, fecha_inscripcion, monto_inscripcion, estado_inscripcion)
+VALUES (2, 2, '2024-08-30', 600.00, 'A');
+
+INSERT INTO Clase (id_taller, fecha_clase, tema_clase, observaciones_docente)
+VALUES (1, '2024-09-05', 'Introducción al Tango', 'Clases para principiantes.');
+INSERT INTO Clase (id_taller, fecha_clase, tema_clase, observaciones_docente)
+VALUES (2, '2024-09-06', 'Pasos Avanzados de Tango', 'Clases para alumnos avanzados.');
+
+INSERT INTO Asistencia (id_clase, id_alumno, estado_asistencia)
+VALUES (1, 1, 'P');
+INSERT INTO Asistencia (id_clase, id_alumno, estado_asistencia)
+VALUES (1, 2, 'A');
+INSERT INTO Asistencia (id_clase, id_alumno, estado_asistencia)
+VALUES (2, 1, 'P');
+
+INSERT INTO Cuota (id_inscripcion, fecha_vencimiento, estado_cuota)
+VALUES (1, '2024-09-25', 'I');
+INSERT INTO Cuota (id_inscripcion, fecha_vencimiento, estado_cuota)
+VALUES (2, '2024-09-30', 'P');
+
+INSERT INTO Liquidacion (id_docente, id_taller, monto_liquidacion, estado_liquidacion)
+VALUES (1, 1, 250.00, 'I');
+INSERT INTO Liquidacion (id_docente, id_taller, monto_liquidacion, estado_liquidacion)
+VALUES (2, 2, 300.00, 'P');
+

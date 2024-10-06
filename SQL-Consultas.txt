@@ -1,0 +1,5 @@
+SELECT * FROM Alumno;
+
+SELECT * FROM Inscripcion;
+
+SELECT * FROM Clase WHERE id_taller = 1;

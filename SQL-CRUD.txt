@@ -1,0 +1,28 @@
+-- Consulta las inscripciones, mostrando detalles de alumnos y talleres
+SELECT 
+    Inscripcion.id_inscripcion, 
+    Alumno.nombre AS nombre_alumno, 
+    Alumno.apellido AS apellido_alumno, 
+    Taller.nombre AS nombre_taller, 
+    Inscripcion.fecha_inscripcion, 
+    Inscripcion.monto_inscripcion, 
+    Inscripcion.estado_inscripcion
+FROM 
+    Inscripcion
+JOIN 
+    Alumno ON Inscripcion.id_alumno = Alumno.id_alumno
+JOIN 
+    Taller ON Inscripcion.id_taller = Taller.id_taller;
+
+
+-- Modifica el estado de una inscripcion
+UPDATE Inscripcion
+SET estado_inscripcion = 'B'
+WHERE id_inscripcion = 1; -- Da de baja la inscripcion con ID 1
+
+
+-- Elimina un registro de asistencia de un alumno
+DELETE FROM Asistencia 
+WHERE id_asistencia = 1; -- Esto eliminará la asistencia correspondiente
+
+
