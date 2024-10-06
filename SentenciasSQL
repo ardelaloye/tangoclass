@@ -1,0 +1,96 @@
+-- Creación de la base de datos
+CREATE DATABASE TangoClassDB;
+
+-- Selección de la base de datos para usar
+USE TangoClassDB;
+
+-- Tabla Alumno
+CREATE TABLE Alumno (
+    id_alumno INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    dni INT NOT NULL UNIQUE,
+    fecha_nacimiento DATE NOT NULL,
+    direccion VARCHAR(100) NOT NULL,
+    telefono VARCHAR(15),
+    email VARCHAR(100),
+    estado_alumno CHAR(1) NOT NULL
+);
+
+-- Tabla Docente
+CREATE TABLE Docente (
+    id_docente INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    dni INT NOT NULL UNIQUE,
+    telefono VARCHAR(15),
+    email VARCHAR(100),
+    estado_docente CHAR(1) NOT NULL
+);
+
+-- Tabla Taller
+CREATE TABLE Taller (
+    id_taller INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    fecha_inicio DATE NOT NULL,
+    fecha_fin DATE NOT NULL,
+    cupo_maximo INT NOT NULL,
+    id_docente INT,
+    FOREIGN KEY (id_docente) REFERENCES Docente(id_docente)
+);
+
+-- Tabla Inscripcion
+CREATE TABLE Inscripcion (
+    id_inscripcion INT AUTO_INCREMENT PRIMARY KEY,
+    id_alumno INT,
+    id_taller INT,
+    fecha_inscripcion DATE NOT NULL,
+    monto_inscripcion DECIMAL(10, 2) NOT NULL,
+    estado_inscripcion CHAR(1) NOT NULL,
+    fecha_baja DATE,
+    FOREIGN KEY (id_alumno) REFERENCES Alumno(id_alumno),
+    FOREIGN KEY (id_taller) REFERENCES Taller(id_taller)
+);
+
+-- Tabla Clase
+CREATE TABLE Clase (
+    id_clase INT AUTO_INCREMENT PRIMARY KEY,
+    id_taller INT,
+    fecha_clase DATE NOT NULL,
+    tema_clase VARCHAR(100) NOT NULL,
+    observaciones_docente TEXT,
+    estado_clase CHAR(1) NOT NULL,
+    FOREIGN KEY (id_taller) REFERENCES Taller(id_taller)
+);
+
+-- Tabla Asistencia
+CREATE TABLE Asistencia (
+    id_asistencia INT AUTO_INCREMENT PRIMARY KEY,
+    id_clase INT,
+    id_alumno INT,
+    estado_asistencia CHAR(1) NOT NULL,
+    FOREIGN KEY (id_clase) REFERENCES Clase(id_clase),
+    FOREIGN KEY (id_alumno) REFERENCES Alumno(id_alumno)
+);
+
+-- Tabla Cuota
+CREATE TABLE Cuota (
+    id_cuota INT AUTO_INCREMENT PRIMARY KEY,
+    id_inscripcion INT,
+    fecha_vencimiento DATE NOT NULL,
+    estado_cuota CHAR(1) NOT NULL,
+    fecha_pago DATE,
+    FOREIGN KEY (id_inscripcion) REFERENCES Inscripcion(id_inscripcion)
+);
+
+-- Tabla Liquidacion
+CREATE TABLE Liquidacion (
+    id_liquidacion INT AUTO_INCREMENT PRIMARY KEY,
+    id_docente INT,
+    id_taller INT,
+    monto_liquidacion DECIMAL(10, 2) NOT NULL,
+    estado_liquidacion CHAR(1) NOT NULL,
+    fecha_pago DATE,
+    FOREIGN KEY (id_docente) REFERENCES Docente(id_docente),
+    FOREIGN KEY (id_taller) REFERENCES Taller(id_taller)
+);
