@@ -36,6 +36,7 @@ CREATE TABLE Taller (
     fecha_fin DATE NOT NULL,
     cupo_maximo INT NOT NULL,
     id_docente INT,
+    com_docente INT NOT NULL,
     FOREIGN KEY (id_docente) REFERENCES Docente(id_docente)
 );
 
